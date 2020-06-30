@@ -1,8 +1,6 @@
 require('dotenv/config');
 const key1 = process.env.STRIPE_SECRET_KEY
 const key2 = process.env.STRIPE_PUBLIC_KEY
-console.log(key1)
-console.log(key2)
 const express = require('express');
 const app = express();
 const fs = require('fs');
@@ -15,6 +13,7 @@ app.get('/store', function (req, res) {
             res.status(500).end()
         } else {
             res.render('store.ejs', {
+                stripePublicKey: key2,
                 items: JSON.parse(data)
             })
         }
